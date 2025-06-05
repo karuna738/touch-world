@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+.navbar {
+  background-color: #2c3e50;
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  flex-wrap: wrap;
+
+  .brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  .menu-toggle {
+    display: none;
+    cursor: pointer;
+
+    .material-icons {
+      font-size: 28px;
+      color: white;
+    }
+  }
+
+  .nav-list {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
+    li {
+      a {
+        color: #ecf0f1;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s;
+
+        &:hover,
+        &.active {
+          color: #1abc9c;
+        }
+      }
+    }
+  }
+
+  .logout-btn {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    .material-icons {
+      margin-right: 8px;
+      font-size: 20px;
+    }
+
+    &:hover {
+      background-color: #c0392b;
+    }
+
+    &.active {
+      display: flex;
+      justify-content: center;
+      width: 80%;
+      margin: 1rem auto 0;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .menu-toggle {
+      display: block;
+    }
+
+    .nav-list {
+      flex-direction: column;
+      background-color: #34495e;
+      position: static;
+      transform: none;
+      width: 100%;
+      display: none;
+      margin-top: 1rem;
+
+      &.active {
+        display: flex;
+        align-items: center;
+      }
+
+      li {
+        width: 100%;
+        text-align: center;
+        padding: 0.5rem 0;
+      }
+    }
+
+    .logout-btn {
+      display: none;
+    }
+  }
+}

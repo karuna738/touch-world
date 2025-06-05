@@ -1,0 +1,51 @@
+<div class="signup-container">
+  <div class="left-panel">
+    <div class="branding">
+      <div class="branding-title">
+        <h1>Δ&nbsp;KRΔDUS</h1>
+      </div>
+      <div class="branding-subtitle">
+        <h2>Don't have an account?</h2>
+        <p>
+          Register to access all features. Manage your business in one place. It’s free!
+        </p>
+        <div class="social-icons">
+          <i class="fab fa-vk"></i>
+          <i class="fab fa-facebook-f"></i>
+          <i class="fab fa-twitter"></i>
+          <i class="fab fa-google-plus-g"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="right-panel">
+    <form class="signup-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <h2>Login</h2>
+      <div class="input-group" [ngClass]="{ filled: loginForm.get('username')?.value }">
+        <input id="username" type="text" formControlName="username" autocomplete="off"
+          [ngClass]="{'validate' : loginForm.get('username')?.errors && submited}" />
+        <label for="username"
+          [ngClass]="{'validate-lable' : loginForm.get('username')?.errors && submited}">Username</label>
+      </div>
+
+      <div class="input-group" [ngClass]="{ filled: loginForm.get('password')?.value}">
+        <input [type]="showPassword ? 'text' : 'password'" id="password" formControlName="password"
+          [ngClass]="{ 'validate': loginForm.get('password')?.errors && submited }" />
+        <label for="password" [ngClass]="{ 'validate-lable': loginForm.get('password')?.errors && submited }">
+          Password
+        </label>
+        <i class="fa" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'" (click)="togglePassword()"></i>
+      </div>
+      <label class="terms" [ngClass]="{'validate-lable' : loginForm.get('agree')?.errors && submited}">
+        <input type="checkbox" formControlName="agree"
+          [ngClass]="{'validate-checkbox' : loginForm.get('agree')?.errors && submited}" />
+        I agree to the <a href="#">Terms of Service</a>
+      </label>
+      <div class="sub">
+        <button type="submit" class="signup-btn">Sign up</button>
+        <p class="have-account"><a href="#">Have an account?</a></p>
+      </div>
+    </form>
+  </div>
+</div>

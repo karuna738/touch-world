@@ -1,0 +1,76 @@
+<div class="employee-list">
+  <div class="search-fields">
+    <div class="search-input">
+      <input [(ngModel)]="searchQuery" (input)="filterData()" placeholder="Search..." class="search-input" />
+    </div>
+  </div>
+  <div class="table-container">
+    <table class="employee-table">
+      <thead>
+        <tr>
+          <th>
+            ID
+            <span class="sort-icons">
+              <span (click)="sortData('id')" [class.active]="sortKey === 'id' && sortDirection === 'asc'">&#9650;</span>
+              <span (click)="sortData('id')"
+                [class.active]="sortKey === 'id' && sortDirection === 'desc'">&#9660;</span>
+            </span>
+          </th>
+          <th>
+            Name
+            <span class="sort-icons">
+              <span (click)="sortData('name')"
+                [class.active]="sortKey === 'name' && sortDirection === 'asc'">&#9650;</span>
+              <span (click)="sortData('name')"
+                [class.active]="sortKey === 'name' && sortDirection === 'desc'">&#9660;</span>
+            </span>
+          </th>
+          <th>
+            Price
+            <span class="sort-icons">
+              <span (click)="sortData('price')"
+                [class.active]="sortKey === 'price' && sortDirection === 'asc'">&#9650;</span>
+              <span (click)="sortData('price')"
+                [class.active]="sortKey === 'price' && sortDirection === 'desc'">&#9660;</span>
+            </span>
+          </th>
+          <th>
+            Description
+            <span class="sort-icons">
+              <span (click)="sortData('description')"
+                [class.active]="sortKey === 'description' && sortDirection === 'asc'">&#9650;</span>
+              <span (click)="sortData('description')"
+                [class.active]="sortKey === 'description' && sortDirection === 'desc'">&#9660;</span>
+            </span>
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngIf="loading">
+          <td colspan="4" class="table-loader">
+            <div class="spinner"></div>
+            <p>Loading data...</p>
+          </td>
+        </tr>
+
+        <tr *ngIf="displayedData.length === 0 && !loading">
+          <td colspan="4" class="no-data">No data found</td>
+        </tr>
+
+        <tr *ngFor="let product of displayedData">
+          <td>{{ product.id }}</td>
+          <td>{{ product.name }}</td>
+          <td>{{ product.price }}</td>
+          <td [title]="product.description">{{ product.description | truncate:50 }}</td>
+        </tr>
+      </tbody>
+
+    </table>
+  </div>
+  <div class="pagination" *ngIf="displayedData.length !== 0 && !loading">
+    <button (click)="prevPage()" [disabled]="currentPage === 1">⬅️ Prev</button>
+    <span>Page {{ currentPage }} / {{ totalPages }}</span>
+    <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next ➡️</button>
+  </div>
+</div>

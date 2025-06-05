@@ -1,0 +1,40 @@
+<div class="employee-list">
+  <div class="header-bar">
+    <button class="add-btn" (click)="navigateToAdd()">+ Add Employee</button>
+  </div>
+  <div class="search-fields">
+    <div class="search-input" *ngFor="let field of searchFields">
+      <input [(ngModel)]="searchValues[field.key]" (input)="applyFilter()" [placeholder]="'Search ' + field.label" />
+    </div>
+  </div>
+  <div class="table-container">
+    <table class="employee-table">
+      <thead>
+        <tr>
+          <th>Employee Name</th>
+          <th>Contact No</th>
+          <th>Email</th>
+          <th>Address</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="paginatedEmployees.length === 0">
+          <td colspan="5" class="no-data">No data found</td>
+        </tr>
+        <tr *ngFor="let emp of paginatedEmployees">
+          <td>{{ emp.name }}</td>
+          <td>{{ emp.contact }}</td>
+          <td>{{ emp.email }}</td>
+          <td>{{ emp.address }}</td>
+          <td><button class="delete-btn" (click)="deleteEmployee(emp)">🗑️ Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pagination" *ngIf="paginatedEmployees.length">
+    <button (click)="prevPage()" [disabled]="currentPage === 1">⬅️ Prev</button>
+    <span>Page {{ currentPage }} / {{ totalPages }}</span>
+    <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next ➡️</button>
+  </div>
+</div>

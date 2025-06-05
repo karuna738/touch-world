@@ -1,0 +1,108 @@
+.add-employee-form {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  font-family: Arial, sans-serif;
+
+  .form-title {
+    margin: 0 0 1rem;
+    font-size: 1.5rem;
+    color: #2c3e50;
+    text-align: center;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+
+    label {
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      color: #34495e;
+    }
+
+    input {
+      padding: 0.6rem 0.8rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+
+      &:focus {
+        border-color: #3498db;
+        outline: none;
+      }
+    }
+
+    p {
+      color: red;
+      font-size: 0.85rem;
+      margin: 0.3rem 0 0;
+    }
+  }
+
+  .button-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    justify-content: center;
+
+    .submit-btn,
+    .cancel-btn {
+      flex: 1;
+      padding: 0.8rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .submit-btn {
+      background-color: #16a085;
+      color: #ffffff;
+
+      &:hover {
+        background-color: #0a604f;
+      }
+    }
+
+    .cancel-btn {
+      background-color: #e74c3c;
+      color: #ffffff;
+
+      &:hover {
+        background-color: #c0392b;
+      }
+    }
+  }
+}
+
+// Responsive styles
+@media (max-width: 500px) {
+  .add-employee-form {
+    padding: 1rem;
+
+    .form-title {
+      font-size: 1.3rem;
+    }
+
+    .button-group {
+      flex-direction: column;
+
+      .submit-btn,
+      .cancel-btn {
+        width: 100%;
+        padding: 0.7rem;
+        font-size: 0.95rem;
+      }
+    }
+  }
+}
+
+.validate{
+      border: 2px solid red !important;
+}
