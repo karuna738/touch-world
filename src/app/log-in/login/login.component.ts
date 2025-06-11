@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth/auth.service';
 import { sheredModule } from '../../shared/shered.module';
@@ -32,7 +32,6 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required],
       agree: [false, Validators.requiredTrue]
     });
-
   }
 
   togglePassword(): void {

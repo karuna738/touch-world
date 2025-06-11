@@ -12,7 +12,8 @@ export class AuthService {
   ];
 
   login(data:any): boolean {
-    const user = this.users.find(u => u.username === data.username && u.password === data.password);
+    const user = this.users.find(u => u.username === data.username && u.password === data.password) ? true : false;
+    
     if (user) {
       sessionStorage.setItem('token', 'logged-in');
       this.toastr.success('Successfully!', 'Login');

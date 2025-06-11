@@ -10,10 +10,10 @@ import { AuthService } from '../../auth/auth.service';
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss',
 })
-export class SidebarComponent implements OnInit{
+export class SidebarComponent implements OnInit {
   menuOpen = false;
   constructor(private authService: AuthService, public router: Router) { }
-  ngOnInit() {}
+  ngOnInit() { }
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
   }
@@ -22,7 +22,7 @@ export class SidebarComponent implements OnInit{
     this.router.navigate(['/login']);
   }
 
-   @HostListener('window:resize', ['$event'])
+  @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
     const width = (event.target as Window).innerWidth;
     if (width > 768 && this.menuOpen) {

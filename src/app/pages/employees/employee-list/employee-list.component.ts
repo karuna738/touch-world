@@ -35,7 +35,7 @@ export class EmployeeListComponent implements OnInit{
   constructor(private router: Router, private service: EmployeeService, private toastr: ToastrService) {
   }
   ngOnInit() {
-    this.allEmployees = this.service.employeeData;
+    this.allEmployees = this.service.getEmployees();
     this.applyFilter();
   }
 
@@ -45,10 +45,8 @@ export class EmployeeListComponent implements OnInit{
         this.pageSize = 10;
         this.currentPage = 1;
     }
-    this.filteredEmployees = this.allEmployees.filter(emp => {
-      return Object.keys(this.searchValues).every(key =>
-        emp[key as keyof Employee].toLowerCase().includes(this.searchValues[key].toLowerCase())
-      );
+    this.filteredEmployees = this.allEmployees.filter((emp:any) => {
+      return Object.keys(this.searchValues).every(key => emp[key].toLowerCase().includes(this.searchValues[key].toLowerCase()));
     });
     this.updatePagination();
   }

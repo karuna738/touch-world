@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { Router } from '@angular/router';
 import { SidebarComponent } from "./shared/sidebar/sidebar.component";
 import { CommonModule } from '@angular/common';
 import { sheredModule } from './shared/shered.module';

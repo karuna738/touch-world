@@ -29,9 +29,7 @@ export class AddEmployeeComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     if (this.employeeForm.valid) {
-      const newId = this.service.employeeData.length ? Math.max(...this.service.employeeData.map((e: any) => e.id ?? 0)) + 1 : 1;
-      const employee = { id: newId, ...this.employeeForm.value };
-      this.service.addEmp(employee);
+      this.service.addEmp(this.employeeForm.value);
       this.toastr.success('Successfully!', 'Added');
       this.router.navigate(['/employees']);
     }

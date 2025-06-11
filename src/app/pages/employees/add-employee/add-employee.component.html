@@ -3,13 +3,13 @@
     <h2 class="form-title">Add Employee</h2>
 
     <div class="form-group">
-      <label for="name">Employee Name</label>
+      <label for="name">Employee Name <span>*</span></label>
       <input id="name" formControlName="name" [ngClass]="{'validate' : employeeForm.get('name')?.errors && submitted}"/>
       <p *ngIf="employeeForm.controls['name'].invalid && submitted">Name is required</p>
     </div>
 
     <div class="form-group">
-      <label for="contact">Contact No</label>
+      <label for="contact">Contact No <span>*</span></label>
       <input id="contact" appNumberOnly formControlName="contact" [ngClass]="{'validate' : employeeForm.get('contact')?.errors && submitted}"/>
       <p *ngIf="employeeForm.controls['contact'].invalid && submitted">
         Valid 10-digit Contact No is required
@@ -17,7 +17,7 @@
     </div>
 
     <div class="form-group">
-      <label for="email">Email</label>
+      <label for="email">Email <span>*</span></label>
       <input id="email" formControlName="email" [ngClass]="{'validate' : employeeForm.get('email')?.errors && submitted}"/>
       <p *ngIf="employeeForm.controls['email'].invalid && submitted">
         Valid Email is required
@@ -25,7 +25,7 @@
     </div>
 
     <div class="form-group">
-      <label for="address">Address</label>
+      <label for="address">Address <span>*</span></label>
       <input id="address" formControlName="address" [ngClass]="{'validate' : employeeForm.get('name')?.errors && submitted}"/>
       <p *ngIf="employeeForm.controls['address'].invalid && submitted">
         Address is required

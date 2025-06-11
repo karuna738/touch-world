@@ -10,7 +10,7 @@ import { sheredModule } from '../../../shared/shered.module';
   styleUrl: './api-data.component.scss'
 })
 export class ApiDataComponent {
- originalData: any[] = [];
+  originalData: any[] = [];
   filteredData: any[] = [];
   displayedData: any[] = [];
 
@@ -21,23 +21,23 @@ export class ApiDataComponent {
   pageSize = 10;
   loading: boolean = false;
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService) { }
 
   ngOnInit() {
-  this.loading = true;
-  this.apiService.getProducts().subscribe({
-    next: (res: any) => {
-      this.originalData = res.data || [];
-      this.filteredData = [...this.originalData];
-      this.updatePagination();
-    },
-    error: (err) => {
-      console.error('API error:', err);
-    },
-    complete: () => {
-      this.loading = false;
-    }
-  });
+    this.loading = true;
+    this.apiService.getProducts().subscribe({
+      next: (res: any) => {
+        this.originalData = res.data || [];
+        this.filteredData = [...this.originalData];
+        this.updatePagination();
+      },
+      error: (err) => {
+        console.error('API error:', err);
+      },
+      complete: () => {
+        this.loading = false;
+      }
+    });
   }
 
   filterData() {
@@ -46,33 +46,31 @@ export class ApiDataComponent {
     this.updatePagination();
   }
 
-sortData(key: string) {
-  if (this.sortKey === key) {
-    this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
-  } else {
-    this.sortKey = key;
-    this.sortDirection = 'asc';
-  }
-
-  this.filteredData.sort((a, b) => {
-    const aVal = a[key];
-    const bVal = b[key];
-
-    if (!isNaN(aVal) && !isNaN(bVal)) {
-      return this.sortDirection === 'asc' ? aVal - bVal : bVal - aVal;
+  sortData(key: string) {
+    if (this.sortKey === key) {
+      this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+    } else {
+      this.sortKey = key;
+      this.sortDirection = 'asc';
     }
 
-    const aStr = aVal?.toString().toLowerCase() || '';
-    const bStr = bVal?.toString().toLowerCase() || '';
+    this.filteredData.sort((a, b) => {
+      const aVal = a[key];
+      const bVal = b[key];
 
-    return this.sortDirection === 'asc'
-      ? aStr.localeCompare(bStr)
-      : bStr.localeCompare(aStr);
-  });
+      if (!isNaN(aVal) && !isNaN(bVal)) {
+        return this.sortDirection === 'asc' ? aVal - bVal : bVal - aVal;
+      }
 
-  this.currentPage = 1;
-  this.updatePagination();
-}
+      const aStr = aVal?.toString().toLowerCase() || '';
+      const bStr = bVal?.toString().toLowerCase() || '';
+
+      return this.sortDirection === 'asc' ? aStr.localeCompare(bStr) : bStr.localeCompare(aStr);
+    });
+
+    this.currentPage = 1;
+    this.updatePagination();
+  }
 
 
   updatePagination() {
